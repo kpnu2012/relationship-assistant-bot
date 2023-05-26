@@ -1,0 +1,10 @@
+flask===2.2.2
+pip==23.1.2
+google-api-python-client
+google
+google-auth-oauthlib
+openai
+langchain
+llama-index
+gunicorn
+transformers
