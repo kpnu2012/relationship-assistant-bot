@@ -79,7 +79,7 @@
                 type="text"
                 id="user-input"
                 name="user_input"
-                placeholder="Enter an article intro or summary."
+                placeholder="What's on your mind?"
         />
         <button type="submit" id="submitBtn">Send</button>
     </form>
@@ -94,7 +94,7 @@
             // Prevent the form from submitting and refreshing the page
             event.preventDefault();
             let resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = "Hmm, let's see. Give me a moment...";
+            resultDiv.innerHTML = "Ah, very interesting! Just a moment. Let me search my quiz library...";
 
             let userInput = document.getElementById("user-input").value;
             let url = `/gpt3?user_input=${encodeURIComponent(userInput)}`;

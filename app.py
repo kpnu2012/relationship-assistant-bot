@@ -21,12 +21,12 @@ def gpt4():
         # load index
         index = load_index_from_storage(storage_context)
         query_engine = index.as_query_engine()
-        response = query_engine.query("Select up to 3 quizzes from the document that you think I would like to take based on this input:" + user_input)
+        response = query_engine.query("Select up to 3 quizzes from the document that you think I would like to take based on this input:" + user_input + ". Return the quizzes as a list of URLs.")
         content = str(response)
         print(response.get_formatted_sources())
         print(process.memory_info().rss)
-        if "documents provided" in content:
-            content = "I could not find a relevant Expert Interview."
+        if "document" in content:
+            content = "Oh no, you stumped me! I couldn't find any relevant quizzes. Perhaps try again?"
     except RateLimitError:
         content = "The server is experiencing a high volume of requests. Please try again later."
 
