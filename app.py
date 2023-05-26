@@ -23,10 +23,12 @@ def gpt4():
         query_engine = index.as_query_engine()
         response = query_engine.query("Select up to 3 quizzes from the document that you think I would like to take based on this input:" + user_input + ". Return the quizzes as a list of URLs.")
         content = str(response)
-        print(response.get_formatted_sources())
-        print(process.memory_info().rss)
-        if "document" in content:
-            content = "Oh no, you stumped me! I couldn't find any relevant quizzes. Perhaps try again?"
+        #print(response.get_formatted_sources())
+        #print(process.memory_info().rss)
+        if "document" in content or "input" in content:
+            #content = "Oh no, you stumped me! I couldn't find any relevant quizzes. Perhaps try again?"
+            response = query_engine.query("Select 3 random quizzes from the document and return them to me as a list of URLs.")
+            content = str(response)
     except RateLimitError:
         content = "The server is experiencing a high volume of requests. Please try again later."
 
