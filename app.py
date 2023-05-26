@@ -1,18 +1,9 @@
-import os
-import pickle
-import json
-import openai
-
+import psutil
 from flask import Flask, render_template, request, jsonify
 from openai.error import RateLimitError
-from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow
-from langchain import OpenAI
 from llama_index import GPTVectorStoreIndex, download_loader, StorageContext, load_index_from_storage, LLMPredictor, ServiceContext
-#from dotenv import load_dotenv
-#load_dotenv()
-#os.getenv(OPENAI_API_KEY)
-OPENAI_API_KEY = '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'
+
+
 app = Flask(__name__)
 process = psutil.Process()
 @app.route('/')
