@@ -8,3 +8,4 @@ langchain
 llama-index
 gunicorn
 transformers
+psutil
