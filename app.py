@@ -2,7 +2,6 @@ import os
 import pickle
 import json
 import openai
-import psutil
 
 from flask import Flask, render_template, request, jsonify
 from openai.error import RateLimitError
