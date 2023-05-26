@@ -25,7 +25,7 @@ def gpt4():
         content = str(response)
         #print(response.get_formatted_sources())
         #print(process.memory_info().rss)
-        if "document" in content or "input" in content:
+        if "document" in content or "input" in content or "[]" in content:
             #content = "Oh no, you stumped me! I couldn't find any relevant quizzes. Perhaps try again?"
             response = query_engine.query("Select 3 random quizzes from the document and return them to me as a list of URLs.")
             content = str(response)
