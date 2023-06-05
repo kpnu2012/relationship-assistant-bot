@@ -28,17 +28,17 @@ def gpt4():
         # rebuild storage context
 
         storage_context = StorageContext.from_defaults(persist_dir="./storage")
-        llm_predictor = LLMPredictor(llm=OpenAI(temperature=1, model_name="text-davinci-002"))
+        llm_predictor = LLMPredictor(llm=OpenAI(temperature=0.8, model_name="text-davinci-002"))
         service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor)
         # load index
         index = load_index_from_storage(storage_context,service_context=service_context)
         query_engine = index.as_query_engine()
-        response = query_engine.query("Select up to 3 quizzes from the document that you think I would like to take based on this input:" + user_input + ". Only choose links in the provided document. Return the quizzes as a list of URLs.")
+        response = query_engine.query("Select up to 3 articles from the document that you think I would like to read based on this input:" + user_input + ". Only choose links in the provided document. Return the articles as a list of URLs.")
         content = str(response)
-        if "document" in content or "input" in content or "[]" in content:
-            #content = "Oh no, you stumped me! I couldn't find any relevant quizzes. Perhaps try again?"
-            response = query_engine.query("Select 3 random quizzes from the document and return them to me as a list of URLs.")
-            content = str(response)
+        # if "document" in content or "input" in content or "[]" in content:
+        #     #content = "Oh no, you stumped me! I couldn't find any relevant quizzes. Perhaps try again?"
+        #     response = query_engine.query("Select 3 random quizzes from the document and return them to me as a list of URLs.")
+        #     content = str(response)
     except RateLimitError:
         content = "The server is experiencing a high volume of requests. Please try again later."
 
